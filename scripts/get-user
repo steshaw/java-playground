@@ -1,4 +1,4 @@
-#!/usr/bin/env java --source 15
+#!/home/steshaw/.sdkman/candidates/java/16.0.1.hs-adpt/bin/java --source 15
 
 import java.net.URI;
 import java.net.http.HttpClient;
