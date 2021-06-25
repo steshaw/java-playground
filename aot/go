@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+javac Hello.java
+time java Hello
+
+jaotc --output hello.so Hello.class
+time java -XX:+UnlockExperimentalVMOptions -XX:AOTLibrary=./hello.so Hello
