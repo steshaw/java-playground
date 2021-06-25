@@ -3,7 +3,14 @@
 set -euo pipefail
 
 javac Hello.java
-time java Hello
+time java -verbose Hello
+
+echo -----------------------------------------------------------------------
 
 jaotc --output hello.so Hello.class
-time java -XX:+UnlockExperimentalVMOptions -XX:AOTLibrary=./hello.so Hello
+time java \
+  -XX:+UnlockExperimentalVMOptions \
+  -XX:+PrintAOT \
+  -XX:AOTLibrary=./hello.so \
+  -verbose \
+  Hello
