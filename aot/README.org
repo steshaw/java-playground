@@ -1,1 +1,4 @@
 See [[https://www.baeldung.com/ahead-of-time-compilation]].
+
+Looks like the experimental AOT compiler will be [[https://openjdk.java.net/jeps/410][removed in Java 17]]. It will
+still be possible to use [[https://www.graalvm.org/][GraalVM]] directly of course.

@@ -1,16 +1,32 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
+set -x
+
+verbose_opt=''
+
+if [[ $# -eq 1 && $1 == '--verbose' ]]; then
+  verbose_opt='-verbose'
+elif [[ $# -eq 0 ]]; then
+  :
+else
+  echo "usage: $0 [--verbose]"
+  exit 2
+fi
 
 javac Hello.java
-time java -verbose Hello
+time java ${verbose_opt} Hello
 
-echo -----------------------------------------------------------------------
+if [[ -n ${verbose_opt} ]]; then
+  echo -----------------------------------------------------------------------
+fi
 
 jaotc --output hello.so Hello.class
 time java \
   -XX:+UnlockExperimentalVMOptions \
   -XX:+PrintAOT \
   -XX:AOTLibrary=./hello.so \
-  -verbose \
+  ${verbose_opt} \
   Hello
+
+time jaotc --output java.base.so --module java.base
