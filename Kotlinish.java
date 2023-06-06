@@ -10,9 +10,10 @@ public class Kotlinish {
         :  (degrees < 25) ?
             pair("mild", Color.ORANGE)
         : pair("hot", Color.RED);
-        var description = p.a;
-        var color = p.b;
-        System.out.printf("%3d %s %s\n", degrees, description, color);
+        switch (p) {
+          case Pair(var description, var color) ->
+                    System.out.printf("%3d %s %s\n", degrees, description, color);
+        };
     }
     public static void main(String args[]) {
         updateWeather(0);
