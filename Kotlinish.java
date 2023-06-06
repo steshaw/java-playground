@@ -1,3 +1,7 @@
+//
+// javac --source 20 --enable-preview -Xlint:preview Kotlinish.java
+//
+
 public class Kotlinish {
     static enum Color { BLUE, ORANGE, RED };
     static record Pair<A, B>(A a, B b) {}
@@ -5,12 +9,13 @@ public class Kotlinish {
         return new Pair<A, B>(a, b);
     }
     public static void updateWeather(int degrees) {
-        var p = (degrees < 10) ?
-            pair("cold", Color.BLUE)
-        :  (degrees < 25) ?
-            pair("mild", Color.ORANGE)
-        : pair("hot", Color.RED);
-        switch (p) {
+        switch (
+            (degrees < 10) ?
+              pair("cold", Color.BLUE)
+            :  (degrees < 25) ?
+                pair("mild", Color.ORANGE)
+            : pair("hot", Color.RED)
+          ) {
           case Pair(var description, var color) ->
                     System.out.printf("%3d %s %s\n", degrees, description, color);
         };
