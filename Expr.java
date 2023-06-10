@@ -4,8 +4,8 @@ sealed interface Expr {
 
     static int eval(Expr expr) {
         return switch(expr) {
-            case Constant c -> c.i;
-            case Add add -> eval(add.left) + eval(add.right);
+            case Constant(var i) -> i;
+            case Add(var l, var r) -> eval(l) + eval(r);
         };
     }
 
