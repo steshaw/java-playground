@@ -1,8 +1,10 @@
+// javac -Xlint:preview -source 20 --enable-preview Expr.java && java --enable-preview Expr
+
 sealed interface Expr {
     public record Constant(int i) implements Expr {}
     public record Add(Expr left, Expr right) implements Expr {}
 
-    static int eval(Expr expr) {
+    static int eval(final Expr expr) {
         return switch(expr) {
             case Constant(var i) -> i;
             case Add(var l, var r) -> eval(l) + eval(r);
